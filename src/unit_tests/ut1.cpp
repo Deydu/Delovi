@@ -16,7 +16,14 @@
 
 BOOST_AUTO_TEST_CASE(compiler_version)
 {
+#if 1800 == _MSC_VER
+	BOOST_REQUIRE_EQUAL(199711L, __cplusplus);
+#elif 1900 == _MSC_VER
+	BOOST_REQUIRE_EQUAL(199711L, __cplusplus);
+#else
+	// gcc
 	BOOST_REQUIRE_EQUAL(201103L, __cplusplus);
+#endif // MSC_VER
 }
 
 int add(const int i, const int j)
@@ -52,7 +59,6 @@ BOOST_AUTO_TEST_CASE(boost_example_tests)
 
 BOOST_AUTO_TEST_CASE(unique_and_shared_ptr)
 {
-	BOOST_REQUIRE_EQUAL(201103L, __cplusplus);
 	std::unique_ptr<std::string> str_uptr = std::make_unique<std::string>("blubb");
 //	std::unique_ptr<std::string> str_uptr(new std::string("blubb"));
 //	BOOST_REQUIRE_NE(nullptr, str_uptr.get());  <--  compile error
@@ -84,7 +90,7 @@ BOOST_AUTO_TEST_CASE(load_textfile_binarymode_forward)
 	);
 	BOOST_REQUIRE_EQUAL(static_cast<std::size_t>(rc), file_size);
 	BOOST_REQUIRE_EQUAL(30u, lines_from_file.size());
-	BOOST_REQUIRE_EQUAL(7868u, file_size);
+	BOOST_REQUIRE_EQUAL(2626u, file_size);
 	BOOST_REQUIRE(ifs.is_open());
 	ifs.close();
 }
@@ -109,7 +115,7 @@ BOOST_AUTO_TEST_CASE(load_textfile_binarymode_backward)
 	);
 	BOOST_REQUIRE_EQUAL(static_cast<std::size_t>(rc), file_size);
 	BOOST_REQUIRE_EQUAL(10u, lines_from_file.size());
-	BOOST_REQUIRE_EQUAL(7868u, file_size);
+	BOOST_REQUIRE_EQUAL(2626u, file_size);
 //	std::cout << "\n\n" << std::endl;
 //	std::cout << "[DEBUG][load_textfile_binarymode_backward] lines_from_file:" << std::endl;
 //	for (const std::string& str : lines_from_file)

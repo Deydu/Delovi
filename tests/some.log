@@ -1,0 +1,40 @@
+﻿a Apr  9 05:40:46 pc polkitd[1313]: Unregistered Authentication Agent for unix-session:/org/freedesktop/ConsoleKit/Session1 (system bus name :1.32, object path /org/kde/PolicyKit1/AuthenticationAgent, locale en_IE.UTF-8)
+b Apr  9 05:40:46 pc kdm[1833]: :0[1833]: pam_unix(kde:session): session closed for user ...
+c Apr  9 05:40:47 pc shutdown[25908]: shutting down for system halt
+d Apr  9 05:40:47 pc init[1]: Switching to runlevel: 0
+
+f Apr  9 05:40:49 pc polkitd[1313]: Lost the name org.freedesktop.PolicyKit1 - exiting
+g Apr  9 05:40:49 pc acpid[1198]: exiting
+
+i Apr  9 23:52:10 pc acpid[1198]: starting up with netlink and the input layer
+j Apr  9 23:52:10 pc acpid[1198]: 1 rule loaded
+k Apr  9 23:52:10 pc acpid[1198]: waiting for events: event logging is off
+l Apr  9 23:52:11 pc dbus[1217]: [system] Activating service name='org.freedesktop.PolicyKit1' (using servicehelper)
+m Apr  9 23:52:11 pc polkitd[1313]: Started polkitd version ...
+n Apr  9 23:52:11 pc kernel: ip_tables: (C) 2000-2006 Netfilter Core Team
+o Apr  9 23:52:11 pc polkitd[1313]: Loading rules from directory /etc/polkit-1/rules.d
+p Apr  9 23:52:11 pc polkitd[1313]: Loading rules from directory /usr/share/polkit-1/rules.d
+
+r Apr  9 23:52:11 pc polkitd[1313]: Finished loading, compiling and executingcompiling and executing 1 rules
+s Apr  9 23:52:11 pc dbus[1217]: [system] Successfully activated service 'org.freedesktop.PolicyKit1'
+
+u Apr  9 23:52:11 pc polkitd[1313]: Acquired the name org.freedesktop.PolicyKit1 on the system bus
+v Apr  9 23:52:12 pc kernel: nf_conntrack version ... (16384 buckets, 65536 max)
+
+x Apr  9 23:52:12 pc kernel: ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file '...'
+y Apr  9 23:52:12 pc kernel: ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - version: ...
+
+Apr  9 23:52:12 pc /etc/init.d/net.wlan0[1569]: WARNING: net.wlan0 has started, but is inactive
+B Apr  9 23:52:12 pc /etc/init.d/netmount[1730]: WARNING: netmount will start when net.wlan0 has started
+
+D Apr  9 23:52:12 pc /etc/init.d/samba[1766]: WARNING: samba will start when net.wlan0 has started
+E Apr  9 23:52:13 pc kernel: NET: Registered protocol family 10
+
+G Apr  9 23:52:13 pc kernel: IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+H Apr  9 23:52:14 pc kernel: nvidia 0000:01:00.0: irq 47 for MSI/MSI-X
+I Apr  9 23:52:14 pc acpid[1198]: client connected from 1767[0:0]
+J Apr  9 23:52:14 pc acpid[1198]: 1 client rule loaded
+
+L Apr  9 23:52:18 pc kernel: wlan0: authenticate with ...
+
+N Apr  9 23:52:18 pc kernel: wlan0: send auth to ... (try 1/3)
