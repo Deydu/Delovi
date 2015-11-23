@@ -50,4 +50,4 @@
 #define DELOVI_FILE_DIALOG_OPTIONS QFileDialog::DontUseNativeDialog
 #define DELOVI_FILE_DIALOG_OPTIONS 0
 
-#define DELOVI_PREFERENCES_FILENAME ".delovi.cfg"
+#define DELOVI_CONFIGURATION_FILENAME ".delovi.cfgx"
