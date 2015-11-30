@@ -319,7 +319,7 @@ void Mainwindow::on_action_about_triggered(void)
 	(
 		this,
 		tr("About ") + QCoreApplication::applicationName(),
-		"<b>" + QCoreApplication::applicationName() + "</b>" + tr(" Version ") + QCoreApplication::applicationVersion() + "<br><br>" + tr("Author: ") + "Denny Duphorn<br><br>" + tr("Build Configuration: ") + compile_mode + "<br><br>" + tr("Build Dependencies:") + "<br>" + list_entry + tr("Boost Version %1.%2.%3").arg(BOOST_VERSION / 100000).arg(BOOST_VERSION / 100 % 1000).arg(BOOST_VERSION % 100) + "<br>" + list_entry + tr("Qt Version ") + QT_VERSION_STR
+		"<b>" + QCoreApplication::applicationName() + "</b>" + tr(" Version ") + QCoreApplication::applicationVersion() + "<br>" + "<br>" + tr("Author: ") + "Denny Duphorn" + "<br>" + "<br>" + tr("Build Configuration: ") + compile_mode + "<br>" + "<br>" + tr("Build Dependencies:") + "<br>" + list_entry + tr("Boost Version %1.%2.%3").arg(BOOST_VERSION / 100000).arg(BOOST_VERSION / 100 % 1000).arg(BOOST_VERSION % 100) + "<br>" + list_entry + tr("Qt Version ") + QT_VERSION_STR
 	);
 }
 
