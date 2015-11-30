@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 //	{
 //		app.setStyle(style);
 //	}
-	app.setApplicationName("Delovi");
+	app.setApplicationName("Delovi Logfile Viewer");
 	app.setApplicationVersion(QString("%1.%2").arg(DELOVI_VERSION_MAJOR).arg(DELOVI_VERSION_MINOR) + (0 < DELOVI_VERSION_BUILD ? QString(".%1").arg(DELOVI_VERSION_BUILD) : QString("")));
 	const auto& locale = QLocale::system().name();
 	const auto& translator_file = app.applicationName() + "_" + locale;
