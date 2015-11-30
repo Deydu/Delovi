@@ -47,7 +47,7 @@
 #define DELOVI_VERSION_MINOR unsigned int(0)
 #define DELOVI_VERSION_BUILD unsigned int(0)
 
-#define DELOVI_FILE_DIALOG_OPTIONS QFileDialog::DontUseNativeDialog
+//#define DELOVI_FILE_DIALOG_OPTIONS QFileDialog::DontUseNativeDialog
 #define DELOVI_FILE_DIALOG_OPTIONS 0
 
 #define DELOVI_CONFIGURATION_FILENAME ".delovi.cfgx"
