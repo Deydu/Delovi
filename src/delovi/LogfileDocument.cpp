@@ -528,7 +528,7 @@ bool LogfileDocument::loadFileInternal(const QString& filename, const bool show_
 
 	// set aquire lock
 	{
-		COMMON_LOCK_GUARD(boost::lock_guard, _file_reloading_mutex);
+		COMMON_LOCK_GUARD(boost::lock_guard, *_file_reloading_mutex);
 		if (_file_reloading)
 		{
 			return true;
