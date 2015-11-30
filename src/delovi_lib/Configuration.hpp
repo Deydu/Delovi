@@ -116,7 +116,7 @@ class Configuration
 		
 		template <typename FUNC> void doForEach(FUNC func) const
 		{
-			std::for_each(mOpenedDocuments.begin(), mOpenedDocuments.end(), func);
+			std::for_each(_opened_documents.begin(), _opened_documents.end(), func);
 		}
 		
 	private:
