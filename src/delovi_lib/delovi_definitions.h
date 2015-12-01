@@ -45,7 +45,7 @@
 
 #define DELOVI_VERSION_MAJOR unsigned int(1)
 #define DELOVI_VERSION_MINOR unsigned int(1)
-#define DELOVI_VERSION_BUILD unsigned int(0)
+#define DELOVI_VERSION_BUILD unsigned int(1)
 
 //#define DELOVI_FILE_DIALOG_OPTIONS QFileDialog::DontUseNativeDialog
 #define DELOVI_FILE_DIALOG_OPTIONS 0

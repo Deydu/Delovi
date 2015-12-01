@@ -35,7 +35,7 @@
 #else
 #	include <TextStreamLineParser.hpp>
 #endif // DELOVI_DOCUMENT_READS_FILES_BLOCKWISE
-#include <helper_macros.h>
+#include <helper_macros.hpp>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/regex.hpp>
