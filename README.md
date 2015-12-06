@@ -24,9 +24,9 @@ Howto is yet to be written.
     * Then use these steps to build Qt:
       * Open the VS2015 x86 Native Tools Command Prompt and run:
       ```
-      >set QTDIR=C:\Qt\4.8.6
-      >cd /D %QTDIR%
-      >configure.exe -debug-and-release -make nmake -opensource -ltcg -qt-sql-sqlite -no-qt3support -platform win32-msvc2015 -qt-zlib -qt-libpng -qt-libmng -qt-libtiff -qt-libjpeg -no-dsp -no-vcproj -mmx -3dnow -sse -sse2 -no-openssl -no-dbus -no-phonon -no-webkit -script -scripttools -no-declarative -arch windows -qt-style-windowsxp -qt-style-windowsvista -mp
+        >set QTDIR=C:\Qt\4.8.6
+        >cd /D %QTDIR%
+        >configure.exe -debug-and-release -make nmake -opensource -ltcg -qt-sql-sqlite -no-qt3support -platform win32-msvc2015 -qt-zlib -qt-libpng -qt-libmng -qt-libtiff -qt-libjpeg -no-dsp -no-vcproj -mmx -3dnow -sse -sse2 -no-openssl -no-dbus -no-phonon -no-webkit -script -scripttools -no-declarative -arch windows -qt-style-windowsxp -qt-style-windowsvista -mp
       ```
   * For building Delovi some environment variables need to be set (replace ? with appropriate number):
     * `QTDIR` must contain the path to the Qt directory, e.g. `C:\Qt\4.8.?`
@@ -36,10 +36,10 @@ Howto is yet to be written.
     * Use these steps to build Boost (replace ? with appropriate number):
       * Open the VS201? x86 Native Tools Command Prompt and run:
       ```
-      >set BOOSTDIR=C:\Boost\1.5?.0
-      >cd /D %BOOSTDIR%
-      >bootstrap.bat
-      >b2 --prefix=_prefix --exec-prefix=_eprefix --libdir=lib32-msvc201? --stagedir=_stagedir --build-type=complete --build-dir=_builddir
+        >set BOOSTDIR=C:\Boost\1.5?.0
+        >cd /D %BOOSTDIR%
+        >bootstrap.bat
+        >b2 --prefix=_prefix --exec-prefix=_eprefix --libdir=lib32-msvc201? --stagedir=_stagedir --build-type=complete --build-dir=_builddir
       ```
   * For building Delovi some environment variables need to be set:
     * `BOOSTDIR` must contain the path to the Boost directory, e.g. `C:\Boost\1.56.0`
@@ -60,12 +60,12 @@ Howto is yet to be written.
 * Open the VS2013 x86 Native Tools Command Prompt.
 * Set some environment variables:
 ```
->set Platform=X86
->set BOOSTDIR=C:\Boost\1.56.0
->set QTDIR=C:\Qt\4.8.5
->set QMAKESPEC=win32-msvc2013
->set CMAKEDIR=C:\Tools\cmake-2.8\bin
->set Path=%Path%;%QTDIR%\bin;%CMAKEDIR%
+  >set Platform=X86
+  >set BOOSTDIR=C:\Boost\1.56.0
+  >set QTDIR=C:\Qt\4.8.5
+  >set QMAKESPEC=win32-msvc2013
+  >set CMAKEDIR=C:\Tools\cmake-2.8\bin
+  >set Path=%Path%;%QTDIR%\bin;%CMAKEDIR%
 ```
 * Go to your git checkout directory and there change directory to subfolder `BUILD_MSVC2013`.
 * Start `cmake-gui`. There you will be asked for the location of the source code and the build directory. The source code path is the path of the git checkout. The build directory is the subdirectory of that path: `<CHECKOUTPATH>/BUILD_MSVC2013`.
@@ -74,7 +74,7 @@ Howto is yet to be written.
 * Close `cmake-gui`.
 * Use the patch tool to modify some CMake-settings in `CMakeCache.txt`:
 ```
->pat_ch CMakeCache.txt CMakeCache.patch
+  >pat_ch CMakeCache.txt CMakeCache.patch
 ```
 * Start `cmake-gui` again.
 * Press the button "Generate" once more. Wait until the process finished.
@@ -86,11 +86,11 @@ Howto is yet to be written.
   * Re-run `cmake-gui` again and press "Generate" button.
 * Start Visual Studio 2013 and open the generated solution you've just created:
 ```
->devenv DELOVI.sln
+  >devenv DELOVI.sln
 ```
 * Or in case you just want to build and install the application run:
 ```
->devenv DELOVI.sln /Build "Release|Win32" /Project INSTALL
+  >devenv DELOVI.sln /Build "Release|Win32" /Project INSTALL
 ```
 
 
@@ -100,12 +100,12 @@ Howto is yet to be written.
 * Open the VS2015 x86 Native Tools Command Prompt.
 * Set some environment variables:
 ```
->set Platform=X86
->set BOOSTDIR=C:\Boost\1.59.0
->set QTDIR=C:\Qt\4.8.6
->set QMAKESPEC=win32-msvc2015
->set CMAKEDIR=C:\Tools\cmake-3.3\bin
->set Path=%Path%;%QTDIR%\bin;%CMAKEDIR%
+  >set Platform=X86
+  >set BOOSTDIR=C:\Boost\1.59.0
+  >set QTDIR=C:\Qt\4.8.6
+  >set QMAKESPEC=win32-msvc2015
+  >set CMAKEDIR=C:\Tools\cmake-3.3\bin
+  >set Path=%Path%;%QTDIR%\bin;%CMAKEDIR%
 ```
 * Go to your git checkout directory and there change directory to subfolder `BUILD_MSVC2015`.
 * Start `cmake-gui`. There you will be asked for the location of the source code and the build directory. The source code path is the path of the git checkout. The build directory is the subdirectory of that path: `<CHECKOUTPATH>/BUILD_MSVC2015`.
@@ -114,7 +114,7 @@ Howto is yet to be written.
 * Close `cmake-gui`.
 * Use the patch tool to modify some CMake-settings in `CMakeCache.txt`:
 ```
->pat_ch CMakeCache.txt CMakeCache.patch
+  >pat_ch CMakeCache.txt CMakeCache.patch
 ```
 * Start `cmake-gui` again.
 * Press the button "Generate" once more. Wait until the process finished.
@@ -126,9 +126,9 @@ Howto is yet to be written.
   * Re-run `cmake-gui` again and press "Generate" button.
 * Start Visual Studio 2015 and open the generated solution you've just created:
 ```
->devenv DELOVI.sln
+  >devenv DELOVI.sln
 ```
 * Or in case you just want to build and install the application run:
 ```
->devenv DELOVI.sln /Build "Release|Win32" /Project INSTALL
+  >devenv DELOVI.sln /Build "Release|Win32" /Project INSTALL
 ```
