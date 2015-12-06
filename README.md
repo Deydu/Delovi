@@ -17,19 +17,19 @@ Description yet to be written.
 * Only Visual Studio 2013 and Visual Studio 2015 and only 32 bit builds are supported.
 * You need Qt 4.8 (at least 4.8.5), Boost 1.56, and CMake 2.8 or 3.3.
 * For Qt some environment variables need to be set:
-** `QTDIR` must contain the path to the Qt directory, e.g. `C:\Qt\4.8.5`
-** `QMAKESPEC` must contain: `win32-msvc2013`
+  * `QTDIR` must contain the path to the Qt directory, e.g. `C:\Qt\4.8.5`
+  * `QMAKESPEC` must contain: `win32-msvc2013`
 * For Boost some environment variable need to be set:
-** `BOOSTDIR` must contain the path to the Boost directory, e.g. `C:\Boost\1.56.0`
-** Because the CMake configuration of this solution requires the Boost libraries to be found in `%BOOSTDIR%\lib_%Platform%`, the variable `Platform` must contain `X86` for 32 bit builds and `X64` for 64 bit builds.
+  * `BOOSTDIR` must contain the path to the Boost directory, e.g. `C:\Boost\1.56.0`
+  * Because the CMake configuration of this solution requires the Boost libraries to be found in `%BOOSTDIR%\lib_%Platform%`, the variable `Platform` must contain `X86` for 32 bit builds and `X64` for 64 bit builds.
 * Since CMake is required to build the solution the environment variable `PATH` needs to contain the path to the CMake executable.
 * For patching the generated `CMakeCache.txt` you need the patch tool:
-** Because the CMake generated file `CMakeCache.txt` doesn't contain all the recommended compile and link flags there's a patch file `CMakeCache.patch` that can be applied to the fresly generated `CMakeCache.txt`.
-** For this to work the patch tool (famous in Linux world) is required.
-** For Windows there's a port that can be downloaded from: http://gnuwin32.sourceforge.net/packages/patch.htm
-** However because Windows Vista, 7, 8, 8.1, and later thinks the executable `patch.exe` requires administrator rights, which is very annoying.
-** The simple solution is to rename the executable to e.g. `pat_ch.exe`. See also: http://superuser.com/questions/894170/patch-tool-without-admin-privileges-on-windows-7
-** Naturally it is most helpful if your environment variable `PATH` contains the path to the patch executable.
+  * Because the CMake generated file `CMakeCache.txt` doesn't contain all the recommended compile and link flags there's a patch file `CMakeCache.patch` that can be applied to the fresly generated `CMakeCache.txt`.
+  * For this to work the patch tool (famous in Linux world) is required.
+  * For Windows there's a port that can be downloaded from: http://gnuwin32.sourceforge.net/packages/patch.htm
+  * However because Windows Vista, 7, 8, 8.1, and later thinks the executable `patch.exe` requires administrator rights, which is very annoying.
+  * The simple solution is to rename the executable to e.g. `pat_ch.exe`. See also: http://superuser.com/questions/894170/patch-tool-without-admin-privileges-on-windows-7
+  * Naturally it is most helpful if your environment variable `PATH` contains the path to the patch executable.
 
 
 
@@ -58,10 +58,10 @@ pat_ch CMakeCache.txt CMakeCache.patch
 * Press the button "Generate" once more. Wait until the process finished.
 * Close `cmake-gui`.
 * If you want to change the path where the built executables will be installed:
-** Open `CMakeCache.txt` in an editor.
-** Search for `CMAKE_INSTALL_PREFIX`.
-** Change that path to your liking, e.g.: `C:/Tools/DELOVI`.
-** Re-run `cmake-gui` again and press "Generate" button.
+  * Open `CMakeCache.txt` in an editor.
+  * Search for `CMAKE_INSTALL_PREFIX`.
+  * Change that path to your liking, e.g.: `C:/Tools/DELOVI`.
+  * Re-run `cmake-gui` again and press "Generate" button.
 * Start Visual Studio 2013 and open the generated solution you've just created:
 ```
 devenv DELOVI.sln
@@ -98,10 +98,10 @@ pat_ch CMakeCache.txt CMakeCache.patch
 * Press the button "Generate" once more. Wait until the process finished.
 * Close `cmake-gui`.
 * If you want to change the path where the built executables will be installed:
-** Open `CMakeCache.txt` in an editor.
-** Search for `CMAKE_INSTALL_PREFIX`.
-** Change that path to your liking, e.g.: `C:/Tools/DELOVI`.
-** Re-run `cmake-gui` again and press "Generate" button.
+  * Open `CMakeCache.txt` in an editor.
+  * Search for `CMAKE_INSTALL_PREFIX`.
+  * Change that path to your liking, e.g.: `C:/Tools/DELOVI`.
+  * Re-run `cmake-gui` again and press "Generate" button.
 * Start Visual Studio 2015 and open the generated solution you've just created:
 ```
 devenv DELOVI.sln
