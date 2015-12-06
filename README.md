@@ -18,12 +18,31 @@ Howto is yet to be written.
 
 * Only Visual Studio 2013 and Visual Studio 2015 and only 32 bit builds are supported.
 * You need Qt 4.8 (at least 4.8.5), Boost 1.56, and CMake 2.8 or 3.3.
-* For Qt some environment variables need to be set:
-  * `QTDIR` must contain the path to the Qt directory, e.g. `C:\Qt\4.8.5`
-  * `QMAKESPEC` must contain: `win32-msvc2013`
-* For Boost some environment variable need to be set:
-  * `BOOSTDIR` must contain the path to the Boost directory, e.g. `C:\Boost\1.56.0`
-  * Because the CMake configuration of this solution requires the Boost libraries to be found in `%BOOSTDIR%\lib_%Platform%`, the variable `Platform` must contain `X86` for 32 bit builds and `X64` for 64 bit builds.
+* Qt:
+  * Build Qt:
+    * Since Qt 4.8.6 won't build on Windows using Visual Studio 2015 out of the box there are some modifications to be made in order to build Qt. See http://stackoverflow.com/questions/32848962/how-to-build-qt-4-8-6-with-visual-studio-2015-without-official-support for how to do that.
+    * Then use these steps to build Qt:
+      * Open the VS2015 x86 Native Tools Command Prompt.
+      ```
+      set QTDIR=C:\Qt\4.8.6
+      cd /D %QTDIR%
+      configure.exe -debug-and-release -make nmake -opensource -ltcg -qt-sql-sqlite -no-qt3support -platform win32-msvc2015 -qt-zlib -qt-libpng -qt-libmng -qt-libtiff -qt-libjpeg -no-dsp -no-vcproj -mmx -3dnow -sse -sse2 -no-openssl -no-dbus -no-phonon -no-webkit -script -scripttools -no-declarative -arch windows -qt-style-windowsxp -qt-style-windowsvista -mp
+      ```
+  * For building Delovi some environment variables need to be set (replace ? with appropriate number):
+    * `QTDIR` must contain the path to the Qt directory, e.g. `C:\Qt\4.8.?`
+    * `QMAKESPEC` must contain: `win32-msvc201?`
+* Boost:
+  * Build Boost:
+    * Use these steps to build Boost (replace ? with appropriate number):
+      * Open the VS201? x86 Native Tools Command Prompt.
+      ```
+      set BOOSTDIR=C:\Boost\1.5?.0
+      cd /D %BOOSTDIR%
+      b2 --prefix=_prefix --exec-prefix=_eprefix --libdir=lib32-msvc201? --stagedir=_stagedir --build-type=complete --build-dir=_builddir
+      ```
+  * For Boost some environment variable need to be set:
+    * `BOOSTDIR` must contain the path to the Boost directory, e.g. `C:\Boost\1.56.0`
+    * Because the CMake configuration of this solution requires the Boost libraries to be found in `%BOOSTDIR%\lib_%Platform%`, the variable `Platform` must contain `X86` for 32 bit builds and `X64` for 64 bit builds.
 * Since CMake is required to build the solution the environment variable `PATH` needs to contain the path to the CMake executable.
 * For patching the generated `CMakeCache.txt` you need the patch tool:
   * Because the CMake generated file `CMakeCache.txt` doesn't contain all the recommended compile and link flags there's a patch file `CMakeCache.patch` that can be applied to the fresly generated `CMakeCache.txt`.
@@ -37,7 +56,7 @@ Howto is yet to be written.
 
 ### How to build using Microsoft Visual Studio 2013
 
-* Open the VS2013 x86 Native Tools Command Prompt
+* Open the VS2013 x86 Native Tools Command Prompt.
 * Set some environment variables:
 ```
 >set Platform=X86
@@ -77,7 +96,7 @@ devenv DELOVI.sln /Build "Release|Win32" /Project INSTALL
 
 ### How to build using Microsoft Visual Studio 2015
 
-* Open the VS2015 x86 Native Tools Command Prompt
+* Open the VS2015 x86 Native Tools Command Prompt.
 * Set some environment variables:
 ```
 >set Platform=X86
