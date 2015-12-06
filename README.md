@@ -74,7 +74,7 @@ Howto is yet to be written.
 * Close `cmake-gui`.
 * Use the patch tool to modify some CMake-settings in `CMakeCache.txt`:
 ```
-pat_ch CMakeCache.txt CMakeCache.patch
+>pat_ch CMakeCache.txt CMakeCache.patch
 ```
 * Start `cmake-gui` again.
 * Press the button "Generate" once more. Wait until the process finished.
@@ -114,7 +114,7 @@ pat_ch CMakeCache.txt CMakeCache.patch
 * Close `cmake-gui`.
 * Use the patch tool to modify some CMake-settings in `CMakeCache.txt`:
 ```
-pat_ch CMakeCache.txt CMakeCache.patch
+>pat_ch CMakeCache.txt CMakeCache.patch
 ```
 * Start `cmake-gui` again.
 * Press the button "Generate" once more. Wait until the process finished.
