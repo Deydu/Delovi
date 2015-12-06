@@ -1,6 +1,6 @@
 include_directories(${DELOVI_SOURCE_DIR}/src/common)
 if(WIN32)
-	include_directories($ENV{BOOSTINCLUDE})
+	include_directories($ENV{BOOSTDIR}/include)
 else(WIN32)
 	include_directories(/usr/include/boost)
 endif(WIN32)
