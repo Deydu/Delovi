@@ -11,6 +11,9 @@ Description yet to be written.
 
 ### How to build on Linux
 
+Howto is yet to be written.
+
+
 
 ### How to build on Microsoft Windows
 
@@ -73,7 +76,7 @@ devenv DELOVI.sln /Build "Release|Win32" /Project INSTALL
 
 
 
-1.2.2 How to build using Microsoft Visual Studio 2015
+#### How to build using Microsoft Visual Studio 2015
 
 * Open the VS2015 x86 Native Tools Command Prompt
 * Set some environment variables:
