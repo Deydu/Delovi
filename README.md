@@ -1,21 +1,20 @@
-# Delovi
-Delovi Logfile Viewer
+# Delovi Logfile Viewer
 
 Description yet to be written.
 
 
 
-## How to build
+# How to build
 
 
 
-### How to build on Linux
+## How to build on Linux
 
 Howto is yet to be written.
 
 
 
-### How to build on Microsoft Windows
+## How to build on Microsoft Windows
 
 * Only Visual Studio 2013 and Visual Studio 2015 and only 32 bit builds are supported.
 * You need Qt 4.8 (at least 4.8.5), Boost 1.56, and CMake 2.8 or 3.3.
@@ -36,7 +35,7 @@ Howto is yet to be written.
 
 
 
-#### How to build using Microsoft Visual Studio 2013
+### How to build using Microsoft Visual Studio 2013
 
 * Open the VS2013 x86 Native Tools Command Prompt
 * Set some environment variables:
@@ -76,7 +75,7 @@ devenv DELOVI.sln /Build "Release|Win32" /Project INSTALL
 
 
 
-#### How to build using Microsoft Visual Studio 2015
+### How to build using Microsoft Visual Studio 2015
 
 * Open the VS2015 x86 Native Tools Command Prompt
 * Set some environment variables:
