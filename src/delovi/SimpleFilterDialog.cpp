@@ -49,10 +49,10 @@ SimpleFilterDialog::SimpleFilterDialog
 	, _filter_strings()
 	, _keep_lines_containing_filter_string(keep_lines_containing_filter_string)
 {
-	std::unique_ptr<Ui::SimpleFilterDialog> tmp_ui = std::make_unique<Ui::SimpleFilterDialog>();
+	auto tmp_ui = std::make_unique<Ui::SimpleFilterDialog>();
 	tmp_ui->setupUi(this);
 	_ui = tmp_ui.release();
-
+	
 	std::size_t filter_strings_size = 0;
 	for (const auto& str : filter_strings)
 	{
@@ -82,28 +82,7 @@ std::vector<std::string> SimpleFilterDialog::takeFilterStrings(void)
 	{
 		_filter_strings = std::move(td->toPlainText().toStdString());
 		boost::algorithm::split(retval, _filter_strings, boost::is_any_of("\n"));
-		for (std::vector<std::string>::iterator it = retval.begin(); retval.end() != it;)
-		{
-			if (it->empty())
-			{
-				it = retval.erase(it);
-			}
-			else
-			{
-				++it;
-			}
-		}
+		retval.erase(std::remove_if(retval.begin(), retval.end(), [] (const std::string& str) {return str.empty(); }), retval.end());
 	}
 	return std::move(retval);
-}
-
-
-void SimpleFilterDialog::on_rb_filter_strings_contain_clicked(void)
-{
-	_keep_lines_containing_filter_string = true;
-}
-
-void SimpleFilterDialog::on_rb_filter_strings_not_contain_clicked(void)
-{
-	_keep_lines_containing_filter_string = false;
 }

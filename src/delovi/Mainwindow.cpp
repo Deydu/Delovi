@@ -189,24 +189,26 @@ Mainwindow::~Mainwindow(void)
 	const auto& sub_window_list = _ui->mdi_area->subWindowList();
 	for (const auto& currwindow : sub_window_list)
 	{
-		const auto* const currdoc = qobject_cast<const LogfileDocument*>(currwindow->widget());
-		const auto& currwindowpos = currwindow->pos();
-		const auto& currwindowsize = currwindow->size();
-		auto simple_filter = currdoc->getSimpleFilter();
-
-		delovi::ConfigurationEntry ce;
-		ce._filename				= std::move(currdoc->getFilename().toStdString());
-		ce._window_rect._x			= currwindowpos.x();
-		ce._window_rect._y			= currwindowpos.y();
-		ce._window_rect._width		= currwindowsize.width();
-		ce._window_rect._height		= currwindowsize.height();
-		ce._scroll_to_bottom		= currdoc->getScrollToBottom();
-		ce._number_of_lines_to_show	= currdoc->getNumberOfLinesToLoad();
-		ce._filter_empty_lines		= currdoc->getFilterEmptyLines();
-		ce._simple_filter.first		= std::move(simple_filter.first);
-		ce._simple_filter.second	= simple_filter.second;
-
-		config.addOpenedDocument(std::move(ce));
+		if (const auto* const currdoc = qobject_cast<const LogfileDocument*>(currwindow->widget()))
+		{
+			const auto& currwindowpos = currwindow->pos();
+			const auto& currwindowsize = currwindow->size();
+			auto simple_filter = currdoc->getSimpleFilter();
+			
+			delovi::ConfigurationEntry ce;
+			ce._filename				= std::move(currdoc->getFilename().toStdString());
+			ce._window_rect._x			= currwindowpos.x();
+			ce._window_rect._y			= currwindowpos.y();
+			ce._window_rect._width		= currwindowsize.width();
+			ce._window_rect._height		= currwindowsize.height();
+			ce._scroll_to_bottom		= currdoc->getScrollToBottom();
+			ce._number_of_lines_to_show	= currdoc->getNumberOfLinesToLoad();
+			ce._filter_empty_lines		= currdoc->getFilterEmptyLines();
+			ce._simple_filter.first		= std::move(simple_filter.first);
+			ce._simple_filter.second	= simple_filter.second;
+			
+			config.addOpenedDocument(std::move(ce));
+		}
 	}
 	config.saveToFile(_config_filename);
 }
@@ -368,35 +370,34 @@ void Mainwindow::dropEvent(QDropEvent* dropevent)
 	if (nullptr == dropevent)
 	{
 		qWarning("[WARNING][%s][%u] got a null pointer drop-event!", __FILE__, __LINE__);
-		return;
 	}
 //	qDebug("[DEBUG][%s][%u] got a drop-event.", __FILE__, __LINE__);
-	const auto* const dropmime_ptr = dropevent->mimeData();
-	if (nullptr == dropmime_ptr)
+	else if (const auto* const dropmime_ptr = dropevent->mimeData())
 	{
-		qWarning("[WARNING][%s][%u] got a drop-event containing no mimedata!", __FILE__, __LINE__);
-		return;
-	}
-//	if (dropmime_ptr->hasFormat("text/uri-list"))
-	if (dropmime_ptr->hasUrls())
-	{
-//		qDebug("[DEBUG][%s][%u] got a drop-event of type \"text/uri-list\".", __FILE__, __LINE__);
-		dropevent->acceptProposedAction();
-		const auto& dropurls = dropmime_ptr->urls();
-//		qDebug() << toqstring("DEBUG", __FILE__, __LINE__) << "got a drop-event with following urls:" << dropurls;
-		for (const auto& qurl : dropurls)
+//		if (dropmime_ptr->hasFormat("text/uri-list"))
+		if (dropmime_ptr->hasUrls())
 		{
-			openFile(qurl.toLocalFile());
+//			qDebug("[DEBUG][%s][%u] got a drop-event of type \"text/uri-list\".", __FILE__, __LINE__);
+			dropevent->acceptProposedAction();
+			const auto& dropurls = dropmime_ptr->urls();
+//			qDebug() << toqstring("DEBUG", __FILE__, __LINE__) << "got a drop-event with following urls:" << dropurls;
+			for (const auto& qurl : dropurls)
+			{
+				openFile(qurl.toLocalFile());
+			}
 		}
-	}
 #ifndef QT_NO_DEBUG_OUTPUT
+		else
+		{
+//			qDebug() << toqstring("DEBUG", __FILE__, __LINE__) << "got a drop-event with following formats:" << dropmime_ptr->formats();
+		}
+#endif // QT_NO_DEBUG_OUTPUT
+	}
 	else
 	{
-//		qDebug() << toqstring("DEBUG", __FILE__, __LINE__) << "got a drop-event with following formats:" << dropmime_ptr->formats();
+		qWarning("[WARNING][%s][%u] got a drop-event containing no mimedata!", __FILE__, __LINE__);
 	}
-#endif
 }
-
 
 void Mainwindow::slot_updateFilterMenu(void)
 {
@@ -498,12 +499,16 @@ void Mainwindow::slot_updateWindowsMenu(void)
 		{
 			if (auto* const subwidget = subwindow->widget())
 			{
-				auto* const child = qobject_cast<LogfileDocument*>(subwidget);
-				auto* const doc_item_action = _ui->menu_window->addAction(tr(9 > index ? "&%1 %2" : "%1 %2").arg(index + 1).arg(child->getUserFriendlyFilename()));
-				doc_item_action->setCheckable(true);
-				doc_item_action->setChecked(getActiveDocumentChild() == child);
-				connect(doc_item_action, SIGNAL(triggered(void)), _window_mapper, SLOT(map(void)));
-				_window_mapper->setMapping(doc_item_action, subwindow);
+				if (auto* const child = qobject_cast<LogfileDocument*>(subwidget))
+				{
+					if (auto* const doc_item_action = _ui->menu_window->addAction(tr(9 > index ? "&%1 %2" : "%1 %2").arg(index + 1).arg(child->getUserFriendlyFilename())))
+					{
+						doc_item_action->setCheckable(true);
+						doc_item_action->setChecked(getActiveDocumentChild() == child);
+						connect(doc_item_action, SIGNAL(triggered(void)), _window_mapper, SLOT(map(void)));
+						_window_mapper->setMapping(doc_item_action, subwindow);
+					}
+				}
 			}
 		}
 	}
@@ -536,11 +541,13 @@ void Mainwindow::slot_handleFileChange(const QString& filename)
 	const auto& sub_window_list = _ui->mdi_area->subWindowList();
 	for (const auto& currwindow : sub_window_list)
 	{
-		auto* const currdoc = qobject_cast<LogfileDocument*>(currwindow->widget());
-		if (filename == currdoc->getFilename())
+		if (auto* const currdoc = qobject_cast<LogfileDocument*>(currwindow->widget()))
 		{
-			currdoc->reloadFileFromGuiThread();
-			return;
+			if (filename == currdoc->getFilename())
+			{
+				currdoc->reloadFileFromGuiThread();
+				return;
+			}
 		}
 	}
 }
@@ -654,10 +661,12 @@ QMdiSubWindow* Mainwindow::findDocumentChild(const QString& filename)
 	const auto& sub_window_list = _ui->mdi_area->subWindowList();
 	for (const auto& currwindow : sub_window_list)
 	{
-		auto* const currdoc = qobject_cast<LogfileDocument*>(currwindow->widget());
-		if (filename == currdoc->getFilename())
+		if (auto* const currdoc = qobject_cast<LogfileDocument*>(currwindow->widget()))
 		{
-			return currwindow;
+			if (filename == currdoc->getFilename())
+			{
+				return currwindow;
+			}
 		}
 	}
 	return nullptr;

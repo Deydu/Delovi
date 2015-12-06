@@ -41,7 +41,7 @@ namespace Ui { class RegexFilterDialog; }
 class RegexFilterDialog : public QDialog
 {
 	Q_OBJECT
-
+	
 	public:
 		RegexFilterDialog
 		(
@@ -52,25 +52,45 @@ class RegexFilterDialog : public QDialog
 		);
 		RegexFilterDialog(const RegexFilterDialog& other) = delete;
 		RegexFilterDialog& operator=(const RegexFilterDialog& other) = delete;
-		std::string takeRegEx(void);
+		std::string takeRegEx(void)
+		{
+			return std::move(_regex);
+		}
 		int Syntax(void) const
 		{
 			return _syntax;
 		}
-
-//	signals:
-//		void sig_dadada(void);
-
+		
 	public slots:
-		void on_rb_syntax_regexp1_clicked(void);
-		void on_rb_syntax_regexp2_clicked(void);
-		void on_rb_syntax_wildcard_clicked(void);
-		void on_rb_syntax_wildcardunix_clicked(void);
-		void on_rb_syntax_fixedstring_clicked(void);
-		void on_rb_syntax_w3cxmlschema11_clicked(void);
-		void on_rb_syntax_boost_clicked(void);
-//		void slot_dududud(void);
-
+		void on_rb_syntax_regexp1_clicked(void)
+		{
+			_syntax = QRegExp::RegExp;
+		}
+		void on_rb_syntax_regexp2_clicked(void)
+		{
+			_syntax = QRegExp::RegExp2;
+		}
+		void on_rb_syntax_wildcard_clicked(void)
+		{
+			_syntax = QRegExp::Wildcard;
+		}
+		void on_rb_syntax_wildcardunix_clicked(void)
+		{
+			_syntax = QRegExp::WildcardUnix;
+		}
+		void on_rb_syntax_fixedstring_clicked(void)
+		{
+			_syntax = QRegExp::FixedString;
+		}
+		void on_rb_syntax_w3cxmlschema11_clicked(void)
+		{
+			_syntax = QRegExp::W3CXmlSchema11;
+		}
+		void on_rb_syntax_boost_clicked(void)
+		{
+			_syntax = -1;
+		}
+		
 	private:
 		Ui::RegexFilterDialog* _ui;
 		std::string _regex;

@@ -45,7 +45,7 @@ RegexFilterDialog::RegexFilterDialog
 	auto tmp_ui = std::make_unique<Ui::RegexFilterDialog>();
 	tmp_ui->setupUi(this);
 	_ui = tmp_ui.release();
-
+	
 	_ui->le_regular_expression->setText(regex.c_str());
 	switch (syntax)
 	{
@@ -57,44 +57,4 @@ RegexFilterDialog::RegexFilterDialog
 		case QRegExp::W3CXmlSchema11:	_ui->rb_syntax_w3cxmlschema11->setChecked(true); break;
 		default:						_ui->rb_syntax_boost->setChecked(true); break;
 	}
-}
-
-std::string RegexFilterDialog::takeRegEx(void)
-{
-	return std::move(_regex);
-}
-
-void RegexFilterDialog::on_rb_syntax_regexp1_clicked(void)
-{
-	_syntax = QRegExp::RegExp;
-}
-
-void RegexFilterDialog::on_rb_syntax_regexp2_clicked(void)
-{
-	_syntax = QRegExp::RegExp2;
-}
-
-void RegexFilterDialog::on_rb_syntax_wildcard_clicked(void)
-{
-	_syntax = QRegExp::Wildcard;
-}
-
-void RegexFilterDialog::on_rb_syntax_wildcardunix_clicked(void)
-{
-	_syntax = QRegExp::WildcardUnix;
-}
-
-void RegexFilterDialog::on_rb_syntax_fixedstring_clicked(void)
-{
-	_syntax = QRegExp::FixedString;
-}
-
-void RegexFilterDialog::on_rb_syntax_w3cxmlschema11_clicked(void)
-{
-	_syntax = QRegExp::W3CXmlSchema11;
-}
-
-void RegexFilterDialog::on_rb_syntax_boost_clicked(void)
-{
-	_syntax = -1;
 }

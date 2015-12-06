@@ -41,7 +41,7 @@ namespace Ui { class SimpleFilterDialog; }
 class SimpleFilterDialog : public QDialog
 {
 	Q_OBJECT
-
+	
 	public:
 		SimpleFilterDialog
 		(
@@ -57,15 +57,17 @@ class SimpleFilterDialog : public QDialog
 			return _keep_lines_containing_filter_string;
 		}
 		std::vector<std::string> takeFilterStrings(void);
-
-//	signals:
-//		void sig_dadada(void);
-
+		
 	public slots:
-		void on_rb_filter_strings_contain_clicked(void);
-		void on_rb_filter_strings_not_contain_clicked(void);
-//		void slot_dududud(void);
-
+		void on_rb_filter_strings_contain_clicked(void)
+		{
+			_keep_lines_containing_filter_string = true;
+		}
+		void on_rb_filter_strings_not_contain_clicked(void)
+		{
+			_keep_lines_containing_filter_string = false;
+		}
+		
 	private:
 		Ui::SimpleFilterDialog* _ui;
 		std::string _filter_strings;
