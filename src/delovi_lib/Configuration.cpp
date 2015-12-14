@@ -66,7 +66,7 @@
 namespace boost { namespace serialization {
 
 
-	template<class ARCHIVE> void serialize(ARCHIVE& ar, delovi::ConfigurationEntry& ce, const unsigned int version)
+template<class ARCHIVE> void serialize(ARCHIVE& ar, delovi::ConfigurationEntry& ce, const unsigned int version)
 {
 	if (5 <= version)
 	{
@@ -76,9 +76,9 @@ namespace boost { namespace serialization {
 		ar & make_nvp("WindowWidth", ce._window_rect._width);
 		ar & make_nvp("WindowHeight", ce._window_rect._height);
 		ar & make_nvp("ScrollToBottom", ce._scroll_to_bottom);
-		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, unsigned int(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), unsigned int(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
+		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, static_cast<unsigned int>(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), static_cast<unsigned int>(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
 		ar & make_nvp("NumberOfLinesToShow", ce._number_of_lines_to_show);
-		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, unsigned int(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), unsigned int(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
+		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, static_cast<unsigned int>(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), static_cast<unsigned int>(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
 		ar & make_nvp("FilterEmptyLines", ce._filter_empty_lines);
 		ar & make_nvp("FilterSimple", ce._simple_filter);
 		ar & make_nvp("FilterRegEx", ce._regex_filter);
@@ -91,9 +91,9 @@ namespace boost { namespace serialization {
 		ar & make_nvp("WindowWidth", ce._window_rect._width);
 		ar & make_nvp("WindowHeight", ce._window_rect._height);
 		ar & make_nvp("ScrollToBottom", ce._scroll_to_bottom);
-		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, unsigned int(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), unsigned int(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
+		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, static_cast<unsigned int>(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), static_cast<unsigned int>(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
 		ar & make_nvp("NumberOfLinesToShow", ce._number_of_lines_to_show);
-		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, unsigned int(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), unsigned int(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
+		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, static_cast<unsigned int>(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), static_cast<unsigned int>(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
 		ar & make_nvp("FilterEmptyLines", ce._filter_empty_lines);
 		ar & make_nvp("FilterSimple", ce._simple_filter);
 	}
@@ -105,9 +105,9 @@ namespace boost { namespace serialization {
 		ar & make_nvp("WindowWidth", ce._window_rect._width);
 		ar & make_nvp("WindowHeight", ce._window_rect._height);
 		ar & make_nvp("ScrollToBottom", ce._scroll_to_bottom);
-		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, unsigned int(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), unsigned int(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
+		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, static_cast<unsigned int>(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), static_cast<unsigned int>(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
 		ar & make_nvp("NumberOfLinesToShow", ce._number_of_lines_to_show);
-		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, unsigned int(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), unsigned int(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
+		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, static_cast<unsigned int>(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), static_cast<unsigned int>(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
 		ar & make_nvp("FilterEmptyLines", ce._filter_empty_lines);
 		std::pair<std::string, bool> filter_simple;
 		ar & make_nvp("FilterSimple", filter_simple);
@@ -136,9 +136,9 @@ namespace boost { namespace serialization {
 		ar & make_nvp("WindowWidth", ce._window_rect._width);
 		ar & make_nvp("WindowHeight", ce._window_rect._height);
 		ar & make_nvp("ScrollToBottom", ce._scroll_to_bottom);
-		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, unsigned int(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), unsigned int(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
+		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, static_cast<unsigned int>(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), static_cast<unsigned int>(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
 		ar & make_nvp("NumberOfLinesToShow", ce._number_of_lines_to_show);
-		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, unsigned int(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), unsigned int(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
+		ce._number_of_lines_to_show = std::min(std::max(ce._number_of_lines_to_show, static_cast<unsigned int>(delovi::ConfigurationEntry::MIN_NUMBER_OF_LINES_TO_SHOW)), static_cast<unsigned int>(delovi::ConfigurationEntry::MAX_NUMBER_OF_LINES_TO_SHOW));
 		ar & make_nvp("FilterEmptyLines", ce._filter_empty_lines);
 		std::pair<bool, std::string> filter_simple;
 		ar & make_nvp("FilterSimple", filter_simple);
