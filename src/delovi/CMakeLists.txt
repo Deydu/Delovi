@@ -51,7 +51,7 @@ endif(WIN32)
 if(WIN32)
 	target_link_libraries(delovi ${QT_LIBRARIES} delovi_lib)
 else(WIN32)
-	target_link_libraries(delovi ${QT_LIBRARIES} delovi_lib boost_serialization boost_regex)
+	target_link_libraries(delovi ${QT_LIBRARIES} delovi_lib boost_serialization boost_regex boost_thread boost_system)
 endif(WIN32)
 
 if(WIN32)
