@@ -23,7 +23,7 @@ Howto is yet to be written.
   * CMake: at least 2.8 (for Visual Studio 2013) or 3.3 (for Visual Studio 2015)
 * Qt:
   * Build Qt:
-	* Using Visual Studio 2015 Qt 4.8.7 won't compile out of the box. There are some modifications to be made. Download the patch file from https://fami.codefreak.ru/mirrors/qt/unofficial_builds/qt4.8.7-msvc2015/02-fix_build_with_msvc2015-45e8f4ee.diff and apply the changes.
+	* Using Visual Studio 2015 Qt 4.8.7 won't compile out of the box. There are some modifications to be made. The Delovi checkout contains a patch file in subdirectory `extra`. See also https://forum.qt.io/topic/56453/compiling-qt4-head-with-msvc-2015-cstdint-errors/3 and https://fami.codefreak.ru/mirrors/qt/unofficial_builds/qt4.8.7-msvc2015/02-fix_build_with_msvc2015-45e8f4ee.diff.
     * Then use these steps to build Qt (replace ? with appropriate number):
       * Open the VS201? x86 Native Tools Command Prompt and run:
       ```
