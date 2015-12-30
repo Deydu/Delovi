@@ -17,34 +17,51 @@ Howto is yet to be written.
 ## How to build on Microsoft Windows
 
 * Only Visual Studio 2013 and Visual Studio 2015 and only 32 bit builds are supported.
-* You need Qt 4.8 (at least 4.8.5), Boost 1.56, and CMake 2.8 or 3.3.
+* You need Qt 4.8, Boost, and CMake:
+  * Qt: at least 4.8.5, recommended 4.8.7
+  * Boost: at least 1.56, recommended 1.59 or newer
+  * CMake: at least 2.8 (for Visual Studio 2013) or 3.3 (for Visual Studio 2015)
 * Qt:
   * Build Qt:
-    * Since Qt 4.8.6 won't build on Windows using Visual Studio 2015 out of the box there are some modifications to be made in order to build Qt. See http://stackoverflow.com/questions/32848962/how-to-build-qt-4-8-6-with-visual-studio-2015-without-official-support for how to do that.
-    * Then use these steps to build Qt:
-      * Open the VS2015 x86 Native Tools Command Prompt and run:
+	* Using Visual Studio 2015 Qt 4.8.7 won't compile out of the box. There are some modifications to be made. Download the patch file from https://fami.codefreak.ru/mirrors/qt/unofficial_builds/qt4.8.7-msvc2015/02-fix_build_with_msvc2015-45e8f4ee.diff and apply the changes.
+    * Then use these steps to build Qt (replace ? with appropriate number):
+      * Open the VS201? x86 Native Tools Command Prompt and run:
       ```
-        >set QTDIR=C:\Qt\4.8.6
+        >set QTDIR=C:\Qt\4.8.7
+        >set QMAKESPEC=win32-msvc201?
         >cd /D %QTDIR%
-        >configure.exe -debug-and-release -make nmake -opensource -ltcg -qt-sql-sqlite -no-qt3support -platform win32-msvc2015 -qt-zlib -qt-libpng -qt-libmng -qt-libtiff -qt-libjpeg -no-dsp -no-vcproj -mmx -3dnow -sse -sse2 -no-openssl -no-dbus -no-phonon -no-webkit -script -scripttools -no-declarative -arch windows -qt-style-windowsxp -qt-style-windowsvista -mp
+        >nmake confclean
+        >configure.exe -debug-and-release -make nmake -opensource -ltcg -qt-sql-sqlite -no-qt3support -platform win32-msvc201? -qt-zlib -qt-libpng -qt-libmng -qt-libtiff -qt-libjpeg -no-dsp -no-vcproj -mmx -3dnow -sse -sse2 -no-openssl -no-dbus -no-phonon -no-webkit -script -scripttools -no-declarative -arch windows -qt-style-windowsxp -qt-style-windowsvista -mp -confirm-license -dont-process
+        >qmake -r QT_BUILD_PARTS="libs tools"
+        >nmake
       ```
+      * This will skip building demos and examples saving compile time and space on your harddisk. (See also: https://wiki.qt.io/How_to_prevent_Qt_from_compiling_code_examples)
   * For building Delovi some environment variables need to be set (replace ? with appropriate number):
     * `QTDIR` must contain the path to the Qt directory, e.g. `C:\Qt\4.8.?`
     * `QMAKESPEC` must contain: `win32-msvc201?`
 * Boost:
   * Build Boost:
     * Use these steps to build Boost (replace ? with appropriate number):
-      * Open the VS201? x86 Native Tools Command Prompt and run:
+      * Open the VS2013 x86 Native Tools Command Prompt and run:
       ```
-        >set BOOSTDIR=C:\Boost\1.5?.0
-        >cd /D %BOOSTDIR%
-        >bootstrap.bat
-        >b2 --prefix=_prefix --exec-prefix=_eprefix --libdir=lib32-msvc201? --stagedir=_stagedir --build-type=complete --build-dir=_builddir
+        >set BOOST_DIR=C:\Boost\1.?.0
+        >cd /D %BOOST_DIR%
+        >bootstrap.bat vc12
+        >b2 --prefix=_prefix --exec-prefix=_eprefix --stagedir=_stagedir --build-type=complete --build-dir=_builddir toolset=msvc-12.0
       ```
+      * Or open the VS2015 x86 Native Tools Command Prompt and run:
+      ```
+        >set BOOST_DIR=C:\Boost\1.?.0
+        >cd /D %BOOST_DIR%
+        >bootstrap.bat vc14
+        >b2 --prefix=_prefix --exec-prefix=_eprefix --stagedir=_stagedir --build-type=complete --build-dir=_builddir toolset=msvc-14.0
+      ```
+      * After building the generated library files can be found in `%BOOST_DIR%\_stagedir\lib\`. It's probably best to move them from there to e.g. `%BOOST_DIR%\lib_X86\`.
   * For building Delovi some environment variables need to be set:
-    * `BOOSTDIR` must contain the path to the Boost directory, e.g. `C:\Boost\1.56.0`
-    * Because the CMake configuration of this solution requires the Boost libraries to be found in `%BOOSTDIR%\lib_%Platform%`, the variable `Platform` must contain `X86` for 32 bit builds and `X64` for 64 bit builds.
-* Since CMake is required to build the solution the environment variable `PATH` needs to contain the path to the CMake executable.
+    * `BOOST_DIR` must contain the path to the Boost directory, e.g. `C:\Boost\1.59.0`.
+    * `BOOST_INCLUDEDIR` must contain the include path. Usually this could be set to `BOOST_DIR` as well.
+    * `BOOST_LIBRARYDIR` must contain the path to the Boost libraries.
+* Because CMake is required to build the solution the environment variable `PATH` needs to contain the path to the CMake executable.
 * For patching the generated `CMakeCache.txt` you need the patch tool:
   * Because the CMake generated file `CMakeCache.txt` doesn't contain all the recommended compile and link flags there's a patch file `CMakeCache.patch` that can be applied to the fresly generated `CMakeCache.txt`.
   * For this to work the patch tool (known from the Linux world) is required.
@@ -52,6 +69,7 @@ Howto is yet to be written.
   * However, Windows Vista, 7, 8, 8.1, and later thinks the executable `patch.exe` requires administrator rights, which is very annoying.
   * The simple solution is to rename the executable to e.g. `pat_ch.exe`. See also: http://superuser.com/questions/894170/patch-tool-without-admin-privileges-on-windows-7
   * Naturally it is most helpful if your environment variable `PATH` contains the path to the patch executable.
+  * Please review the patch file whether the definition _WIN32_WINNT will be set to the correct value. See https://msdn.microsoft.com/en-us/library/6sehtctf.aspx for the correct value for your system.
 
 
 
@@ -61,8 +79,10 @@ Howto is yet to be written.
 * Set some environment variables:
 ```
   >set Platform=X86
-  >set BOOSTDIR=C:\Boost\1.56.0
-  >set QTDIR=C:\Qt\4.8.5
+  >set BOOST_DIR=C:\Boost\1.56.0
+  >set BOOST_INCLUDEDIR=%BOOST_DIR%
+  >set BOOST_LIBRARYDIR=%BOOST_DIR%\lib_X86
+  >set QTDIR=C:\Qt\4.8.7
   >set QMAKESPEC=win32-msvc2013
   >set CMAKEDIR=C:\Tools\cmake-2.8\bin
   >set Path=%Path%;%QTDIR%\bin;%CMAKEDIR%
@@ -101,10 +121,12 @@ Howto is yet to be written.
 * Set some environment variables:
 ```
   >set Platform=X86
-  >set BOOSTDIR=C:\Boost\1.59.0
-  >set QTDIR=C:\Qt\4.8.6
+  >set BOOST_DIR=C:\Boost\1.60.0
+  >set BOOST_INCLUDEDIR=%BOOST_DIR%
+  >set BOOST_LIBRARYDIR=%BOOST_DIR%\lib_X86
+  >set QTDIR=C:\Qt\4.8.7
   >set QMAKESPEC=win32-msvc2015
-  >set CMAKEDIR=C:\Tools\cmake-3.3\bin
+  >set CMAKEDIR=C:\Tools\cmake-3.4\bin
   >set Path=%Path%;%QTDIR%\bin;%CMAKEDIR%
 ```
 * Go to your git checkout directory and there change directory to subfolder `BUILD_MSVC2015`.

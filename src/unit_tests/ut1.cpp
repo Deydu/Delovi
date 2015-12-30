@@ -22,15 +22,14 @@
 
 
 
-#ifndef WIN32
-#	define BOOST_TEST_DYN_LINK
-#endif // WIN32
+#define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE MiscTests
 
 
 
 #include "ut1.cpp.h"
 
+#include <delovi_definitions.h>
 #include <load_textfile.hpp>
 #include <make_unique.hpp>
 
@@ -48,13 +47,22 @@ BOOST_AUTO_TEST_CASE(compiler_version)
 	// gcc
 	BOOST_REQUIRE_EQUAL(201103L, __cplusplus);
 #endif // MSC_VER
+	std::cout
+		<< "Delovi version : " << DELOVI_VERSION_MAJOR << "." << DELOVI_VERSION_MINOR << "." << DELOVI_VERSION_BUILD << "\n"
+		<< "Build date/time: " << __DATE__ << " " << __TIME__ << "\n"
+		<< "Compiler       : "
+#ifdef __GNUC__
+			<< __VERSION__
+#elif defined _MSC_VER
+			<< "MSVC: " << _MSC_FULL_VER
+#endif // __GNUC__ / _MSC_VER
+		<< std::endl;
 }
 
 int add(const int i, const int j)
 {
 	return i+j;
 }
-
 
 BOOST_AUTO_TEST_CASE(boost_example_tests)
 {
