@@ -51,3 +51,5 @@
 #define DELOVI_FILE_DIALOG_OPTIONS 0
 
 #define DELOVI_CONFIGURATION_FILENAME ".delovi.cfgx"
+
+#include <delovi_compiler_detection.h>

@@ -26,6 +26,10 @@
 
 
 
+#include "delovi_definitions.h"
+
+
+
 namespace delovi {
 
 

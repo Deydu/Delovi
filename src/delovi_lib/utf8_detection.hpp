@@ -26,6 +26,8 @@
 
 
 
+#include "delovi_definitions.h"
+
 #include <algorithm>
 
 

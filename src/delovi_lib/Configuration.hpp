@@ -31,6 +31,8 @@ namespace delovi { class ConfigurationPrivateAccessor; }
 
 
 
+#include "delovi_definitions.h"
+
 #include <list>
 #include <vector>
 #include <string>

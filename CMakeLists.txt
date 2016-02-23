@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.4)
 
-project(DELOVI)
+project(DELOVI VERSION 1.1.2 LANGUAGES CXX)
 
 add_subdirectory(src)
 
-if(WIN32)
-	set(CMAKE_INSTALL_PREFIX "D:/Tools/")
-else(WIN32)
-	set(CMAKE_INSTALL_PREFIX $ENV{HOME}/bin/)
-endif(WIN32)
+#if(WIN32)
+#	set(CMAKE_INSTALL_PREFIX "D:/Tools/")
+#else(WIN32)
+#	set(CMAKE_INSTALL_PREFIX $ENV{HOME}/bin/)
+#endif(WIN32)
