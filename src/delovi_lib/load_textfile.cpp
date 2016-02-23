@@ -85,16 +85,16 @@ int load_all_lines_from_stream
 //	ifs.read(entire_file_contents.data(), static_cast<std::streamsize>(file_size));
 //	contains_a_utf8_sequence = does_text_contain_a_utf8_sequence(entire_file_contents.cbegin(), entire_file_contents.cend());
 	std::string line;
-	for (std::vector<char>::const_iterator citer = entire_file_contents.cbegin(), cend = entire_file_contents.cend(); cend != citer; ++citer)
+	for (auto citer = entire_file_contents.cbegin(), cend = entire_file_contents.cend(); cend != citer; ++citer)
 	{
-		std::vector<char>::const_iterator found = std::find_if(citer, cend, is_line_break_char);
+		auto found = std::find_if(citer, cend, is_line_break_char);
 		if (found == cend)
 		{
 			break;
 		}
 		// check if windows format with two linebreak-chars: 0x0d,0x0a
 		{
-			std::vector<char>::const_iterator foundnext = found;
+			auto foundnext = found;
 			++foundnext;
 			if (cend != foundnext && 0x0D == *found && 0x0A == *foundnext)
 			{
@@ -110,9 +110,9 @@ int load_all_lines_from_stream
 		}
 		citer = found;
 	}
-	for (std::list<std::string>::const_iterator citer = text_lines_from_file.cbegin(), cend = text_lines_from_file.cend(); !contains_a_utf8_sequence && cend != citer; ++citer)
+	for (auto citer = text_lines_from_file.cbegin(), cend = text_lines_from_file.cend(); !contains_a_utf8_sequence && cend != citer; ++citer)
 	{
-		const std::string& str = *citer;
+		const auto& str = *citer;
 		contains_a_utf8_sequence = does_text_contain_a_utf8_sequence(str.cbegin(), str.cend());
 	}
 	int retval = static_cast<int>(file_size);
@@ -151,12 +151,12 @@ int load_n_lines_from_stream
 	{
 		return 0;
 	}
-	std::size_t block_size = std::max<std::size_t>(256, read_block_size);
+	auto block_size = std::max(static_cast<std::size_t>(256), read_block_size);
 	if (file_size < block_size)
 	{
 		block_size = file_size;
 	}
-	std::size_t file_pos = file_size - block_size;
+	auto file_pos = file_size - block_size;
 	std::vector<char> file_data;
 	std::vector<char> tmp_data;
 	file_data.reserve(block_size * 2 + 2);
@@ -172,10 +172,10 @@ int load_n_lines_from_stream
 		std::copy(tmp_data.begin(), tmp_data.end(), std::back_inserter(file_data));
 		file_data.swap(tmp_data);
 		std::list<std::string> new_text_lines;
-		std::vector<char>::iterator iter1 = std::find_if(tmp_data.begin(), tmp_data.end(), is_line_break_char);
+		auto iter1 = std::find_if(tmp_data.begin(), tmp_data.end(), is_line_break_char);
 		while (tmp_data.end() != iter1)
 		{
-			std::vector<char>::iterator iter1_next = iter1;
+			auto iter1_next = iter1;
 			++iter1_next;
 			if (tmp_data.end() == iter1_next)
 			{
@@ -187,10 +187,10 @@ int load_n_lines_from_stream
 				iter1 = tmp_data.erase(iter1);
 				iter1 = tmp_data.erase(iter1);
 			}
-			std::vector<char>::iterator iter2 = std::find_if(iter1, tmp_data.end(), is_line_break_char);
+			auto iter2 = std::find_if(iter1, tmp_data.end(), is_line_break_char);
 			if (tmp_data.end() != iter2)
 			{
-				std::vector<char>::iterator iter2_next = iter2;
+				auto iter2_next = iter2;
 				++iter2_next;
 				if (tmp_data.end() != iter2_next && 0x0D == *iter2 && 0x0A == *iter2_next)
 				{
@@ -257,9 +257,9 @@ int load_n_lines_from_stream
 		std::advance(iter, text_lines_from_file.size() - number_of_lines);
 		text_lines_from_file.erase(text_lines_from_file.begin(), iter);
 	}
-	for (std::list<std::string>::const_iterator citer = text_lines_from_file.cbegin(), cend = text_lines_from_file.cend(); !contains_a_utf8_sequence && cend != citer; ++citer)
+	for (auto citer = text_lines_from_file.cbegin(), cend = text_lines_from_file.cend(); !contains_a_utf8_sequence && cend != citer; ++citer)
 	{
-		const std::string& str = *citer;
+		const auto& str = *citer;
 		contains_a_utf8_sequence = does_text_contain_a_utf8_sequence(str.cbegin(), str.cend());
 	}
 	int retval = static_cast<int>(file_size);

@@ -114,18 +114,7 @@ template<class ARCHIVE> void serialize(ARCHIVE& ar, delovi::ConfigurationEntry& 
 		ce._simple_filter.first.clear();
 //		ce._simple_filter.first.emplace_back(std::move(filter_simple.first));
 		boost::algorithm::split(ce._simple_filter.first, filter_simple.first, boost::is_any_of("\n"));
-		for (std::vector<std::string>::iterator it = ce._simple_filter.first.begin(); ce._simple_filter.first.end() != it;)
-		{
-			boost::algorithm::trim(*it);
-			if (it->empty())
-			{
-				it = ce._simple_filter.first.erase(it);
-			}
-			else
-			{
-				++it;
-			}
-		}
+		ce._simple_filter.first.erase(std::remove_if(ce._simple_filter.first.begin(), ce._simple_filter.first.end(), [] (std::string& str) { boost::algorithm::trim(str); return str.empty(); }), ce._simple_filter.first.end());
 		ce._simple_filter.second = filter_simple.second ? 1 : -1;
 	}
 	else if (2 <= version)
@@ -145,18 +134,7 @@ template<class ARCHIVE> void serialize(ARCHIVE& ar, delovi::ConfigurationEntry& 
 		ce._simple_filter.first.clear();
 //		ce._simple_filter.first.emplace_back(std::move(filter_simple.second));
 		boost::algorithm::split(ce._simple_filter.first, filter_simple.second, boost::is_any_of("\n"));
-		for (std::vector<std::string>::iterator it = ce._simple_filter.first.begin(); ce._simple_filter.first.end() != it;)
-		{
-			boost::algorithm::trim(*it);
-			if (it->empty())
-			{
-				it = ce._simple_filter.first.erase(it);
-			}
-			else
-			{
-				++it;
-			}
-		}
+		ce._simple_filter.first.erase(std::remove_if(ce._simple_filter.first.begin(), ce._simple_filter.first.end(), [] (std::string& str) { boost::algorithm::trim(str); return str.empty(); }), ce._simple_filter.first.end());
 		ce._simple_filter.second = filter_simple.first ? 1 : -1;
 	}
 	else if (1 <= version)
