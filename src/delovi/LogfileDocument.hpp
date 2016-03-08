@@ -39,7 +39,41 @@ namespace boost { class mutex; };
 
 
 #include <Configuration.hpp>
-#include "LogfileDocument_hpp.h"
+
+#if defined __GNUC__
+//#	pragma GCC diagnostic push
+//#	pragma GCC diagnostic ignored "-Wall"
+#elif defined __SUNPRO_CC
+#	pragma disable_warn
+#elif defined _MSC_VER
+#	pragma warning(push)
+#	pragma warning(disable : 4127)	// conditional expression is constant
+//#	pragma warning(disable : 4244)	// 'return' : type conversion, possible loss of data
+#	pragma warning(disable : 4251)	// class needs to have dll-interface to be used
+//#	pragma warning(disable : 4311)	// 'reinterpret_cast' : pointer truncation
+//#	pragma warning(disable : 4312)	// 'reinterpret_cast' : conversion to <type> of greater size
+//#	pragma warning(disable : 4365)	// 'argument' : conversion from 'uint' to 'int', signed/unsigned mismatch
+//#	pragma warning(disable : 4512)	// assignment operator could not be generated
+//#	pragma warning(disable : 4514)	//  unreferenced inline function has been removed
+//#	pragma warning(disable : 4619)	// there is no warning number '4660'
+//#	pragma warning(disable : 4625)	// copy constructor could not be generated because a base class copy constructor is inaccessible
+//#	pragma warning(disable : 4626)	// assignment operator could not be generated because a base class assignment operator is inaccessible
+#	pragma warning(disable : 4800)	// forcing value to bool 'true' or 'false' (performance warning)
+//#	pragma warning(disable : 4820)	// n bytes padding added after data member
+//#	pragma warning(disable : 4986)	// 'operator new[]': exception specification does not match previous declaration
+#endif
+#if 1 == DELOVI_DOCUMENT_USES_TEXTEDIT
+#	include <QTextEdit>
+#elif 2 == DELOVI_DOCUMENT_USES_TEXTEDIT
+#	include <QPlainTextEdit>
+#endif
+#if defined __GNUC__
+//#	pragma GCC diagnostic pop
+#elif defined __SUNPRO_CC
+#	pragma enable_warn
+#elif defined _MSC_VER
+#	pragma warning(pop)
+#endif
 
 #include <memory>
 #include <utility>

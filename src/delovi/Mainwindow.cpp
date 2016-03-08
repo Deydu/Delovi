@@ -30,10 +30,38 @@
 #include "LogfileDocument.hpp"
 #include "SimpleFilterDialog.hpp"
 #include "RegexFilterDialog.hpp"
-#include "Mainwindow_cpp.h"
 
 #include <delovi_definitions.h>
 #include <Configuration.hpp>
+
+#if defined __GNUC__
+//#	pragma GCC diagnostic push
+//#	pragma GCC diagnostic ignored "-Wall"
+#elif defined __SUNPRO_CC
+#	pragma disable_warn
+#elif defined _MSC_VER
+#	pragma warning(push)
+//#	pragma warning(disable : 4127)	// conditional expression is constant
+#	pragma warning(disable : 4251)	// class needs to have dll-interface to be used
+//#	pragma warning(disable : 4514)	//  unreferenced inline function has been removed
+#endif
+#include "ui_main_window.h"
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QMdiSubWindow>
+#include <QSignalMapper>
+#include <QDragEnterEvent>
+#include <QDebug>
+#include <QUrl>
+#include <QFileSystemWatcher>
+#include <QInputDialog>
+#if defined __GNUC__
+//#	pragma GCC diagnostic pop
+#elif defined __SUNPRO_CC
+#	pragma enable_warn
+#elif defined _MSC_VER
+#	pragma warning(pop)
+#endif
 
 #include <boost/version.hpp>
 
@@ -110,7 +138,7 @@ Mainwindow::Mainwindow(QWidget* const parent, const Qt::WindowFlags flags)
 	, _file_system_watcher(nullptr)
 	, _config_filename()
 {
-	std::auto_ptr<Ui::Mainwindow> tmp(new Ui::Mainwindow);
+	std::unique_ptr<Ui::Mainwindow> tmp(new Ui::Mainwindow);
 	tmp->setupUi(this);
 	_ui = tmp.release();
 	

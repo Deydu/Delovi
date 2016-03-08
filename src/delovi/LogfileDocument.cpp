@@ -28,7 +28,36 @@
 
 
 #include "LogfileDocument.hpp"
-#include "LogfileDocument_cpp.h"
+#if defined __GNUC__
+//#	pragma GCC diagnostic push
+//#	pragma GCC diagnostic ignored "-Wall"
+#elif defined __SUNPRO_CC
+#	pragma disable_warn
+#elif defined _MSC_VER
+#	pragma warning(push)
+//#	pragma warning(disable : 4127)	// conditional expression is constant
+#	pragma warning(disable : 4251)	// class needs to have dll-interface to be used
+//#	pragma warning(disable : 4311)	// 'reinterpret_cast' : pointer truncation
+//#	pragma warning(disable : 4312)	// 'reinterpret_cast' : conversion to <type> of greater size
+#	pragma warning(disable : 4512)	// assignment operator could not be generated
+//#	pragma warning(disable : 4514)	// unreferenced inline function has been removed
+#endif
+#include <QMessageBox>
+#include <QFileInfo>
+//#include <QTextStream>
+#include <QApplication>
+#include <QFileSystemWatcher>
+#include <QScrollBar>
+//#include <QTimer>
+//#include <QMutex>
+//#include <QMutexLocker>
+#if defined __GNUC__
+//#	pragma GCC diagnostic pop
+#elif defined __SUNPRO_CC
+#	pragma enable_warn
+#elif defined _MSC_VER
+#	pragma warning(pop)
+#endif
 
 #ifdef DELOVI_DOCUMENT_READS_FILES_BLOCKWISE
 #	include <load_textfile.hpp>

@@ -27,7 +27,26 @@
 #endif // _MSC_VER
 
 #include "SimpleFilterDialog.hpp"
-#include "SimpleFilterDialog.cpp.h"
+#if defined __GNUC__
+//#	pragma GCC diagnostic push
+//#	pragma GCC diagnostic ignored "-Wall"
+#elif defined __SUNPRO_CC
+#	pragma disable_warn
+#elif defined _MSC_VER
+#	pragma warning(push)
+#	pragma warning(disable : 4127)	// conditional expression is constant
+#	pragma warning(disable : 4251)	// class needs to have dll-interface to be used
+//#	pragma warning(disable : 4514)	// unreferenced inline function has been removed
+#	pragma warning(disable : 4800)	// forcing value to bool 'true' or 'false' (performance warning)
+#endif
+#include "ui_simple_filter_dialog.h"
+#if defined __GNUC__
+//#	pragma GCC diagnostic pop
+#elif defined __SUNPRO_CC
+#	pragma enable_warn
+#elif defined _MSC_VER
+#	pragma warning(pop)
+#endif
 
 #include <make_unique.hpp>
 
