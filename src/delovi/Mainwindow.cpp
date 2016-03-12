@@ -33,6 +33,9 @@
 
 #include <delovi_definitions.h>
 #include <Configuration.hpp>
+#ifdef DELOVI_COMPILER_IS_GNU
+#	include <make_unique.hpp>
+#endif // DELOVI_COMPILER_IS_GNU
 
 #if defined __GNUC__
 //#	pragma GCC diagnostic push
@@ -138,7 +141,7 @@ Mainwindow::Mainwindow(QWidget* const parent, const Qt::WindowFlags flags)
 	, _file_system_watcher(nullptr)
 	, _config_filename()
 {
-	std::unique_ptr<Ui::Mainwindow> tmp(new Ui::Mainwindow);
+	auto tmp = std::make_unique<Ui::Mainwindow>();
 	tmp->setupUi(this);
 	_ui = tmp.release();
 	
