@@ -1,6 +1,6 @@
 /*****************************************************************************
  *
- * Copyright (C) 2015 Denny Duphorn <deydu@gmx-topmail.de>
+ * Copyright (C) 2016 Denny Duphorn <deydu@gmx-topmail.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -45,7 +45,7 @@
 
 #define DELOVI_VERSION_MAJOR 1u
 #define DELOVI_VERSION_MINOR 1u
-#define DELOVI_VERSION_BUILD 2u
+#define DELOVI_VERSION_BUILD 4u
 
 //#define DELOVI_FILE_DIALOG_OPTIONS QFileDialog::DontUseNativeDialog
 #define DELOVI_FILE_DIALOG_OPTIONS 0

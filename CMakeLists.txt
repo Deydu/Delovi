@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(DELOVI VERSION 1.1.3 LANGUAGES CXX)
+project(DELOVI VERSION 1.1.4 LANGUAGES CXX)
 
 add_subdirectory(src)
 
